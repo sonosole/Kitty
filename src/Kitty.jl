@@ -3,9 +3,11 @@ module Kitty
 using Random
 
 include("cut-file.jl")
-export filename, filesuffix
+export fullfilename, filename, filesuffix
 
 include("cp-mv-rename.jl")
 export mvrand, cprand
+export copy_file_to_dir
+
 
 end # module Kitty

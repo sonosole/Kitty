@@ -39,3 +39,16 @@ julia> filesuffix("name")
     end
     return ""
 end
+
+
+# 返回带后缀的文件名，不带路径
+"""
+    fullfilename(path_name_suffix::String) -> name_suffix::String
+# Example
+julia> fullfilename("/path/to/this/TONY.txt")
+"TONY.txt"
+"""
+function fullfilename(path_name_suffix::String)
+    name_suffix = last( splitdir(path_name_suffix) )
+    return name_suffix
+end

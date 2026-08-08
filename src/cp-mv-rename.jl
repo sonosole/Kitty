@@ -39,3 +39,24 @@ function cprand(srcdir::String, dstdir::String; type::String, force::Bool=false)
     return mv_or_cp_with_random_name(cp, srcdir, dstdir; type, force)
 end
 
+
+
+# 将文件 srcfile 复制到目标目录下 dstdir，目标目录不存在则新建
+function copy_file_to_dir(srcfile::String, dstdir::String)
+    @assert isfile(srcfile) begin
+        "$srcfile is not a valid file"
+    end
+    if !isdir(dstdir)
+        mkdir(dstdir)
+    end
+
+    srcname = fullfilename(srcfile)
+    dstfile = joinpath(dstdir, srcname)
+    open(dstfile, "w") do dstio
+        open(srcfile, "r") do srcio
+            write(dstio, srcio)
+        end
+    end
+    return nothing
+end
+
